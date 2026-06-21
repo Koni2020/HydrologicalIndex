@@ -1,4 +1,4 @@
-# streamflow-signatures
+# HydrologicalIndex
 
 A Python toolkit for calculating annual streamflow signatures from daily discharge time series.
 
@@ -280,7 +280,7 @@ Author(s). Year. streamflow-signatures: A Python toolkit for calculating annual 
 For questions about the code or data processing workflow, please contact:
 
 ```text
-[Your name]
-[Your institution]
-[Your email]
+[Qingping Cheng]
+[Southwest Forestry University]
+[cqp@swfu.edu.cn]
 ```
