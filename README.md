@@ -1,19 +1,19 @@
 # HydrologicalIndex
 
-A Python toolkit for calculating annual streamflow signatures from daily discharge time series.
+A Python toolkit for calculating annual hydrological indices from daily streamflow time series.
 
-This repository provides the custom code used to derive annual hydrological indices from daily streamflow data. The calculated indicators include flow magnitude, high-flow and low-flow frequency, event duration, timing, variability, rise/fall rates, and baseflow-related metrics.
+This repository provides the custom code used to derive annual hydrological indices from daily discharge data. The calculated indicators include flow magnitude, high-flow and low-flow frequency, event duration, timing, variability, rise/fall rates, and baseflow-related metrics.
 
 ## Repository description
 
-**Repository name:** `streamflow-signatures`
+**Repository name:** `HydrologicalIndex`
 
 **Description:**
-A Python toolkit for calculating annual streamflow signatures from daily discharge data, including flow magnitude, high/low-flow frequency and duration, timing, variability, rise/fall rates, and baseflow index.
+A Python toolkit for calculating annual hydrological indices from daily streamflow data, including flow magnitude, high/low-flow frequency and duration, timing, variability, rise/fall rates, and baseflow index.
 
 ## Purpose
 
-This code was developed to support reproducible hydrological data processing for a Scientific Data submission. It converts daily streamflow records into annual streamflow signature metrics that can be used for hydrological characterization, trend analysis, inter-basin comparison, and technical validation of streamflow-related datasets.
+This code was developed to support reproducible hydrological data processing for a Scientific Data submission. It converts daily streamflow records into annual hydrological indices that can be used for hydrological characterization, trend analysis, inter-basin comparison, and technical validation of streamflow-related datasets.
 
 ## Main functions
 
@@ -24,7 +24,7 @@ The repository includes functions for:
 * Calculating the half-streamflow timing index.
 * Calculating the Richards-Baker flashiness index.
 * Separating baseflow using the Eckhardt digital filter.
-* Computing annual streamflow signature metrics from daily discharge data.
+* Computing annual hydrological indices from daily discharge data.
 
 ## Input data
 
@@ -49,7 +49,7 @@ date        station_001  station_002  station_003
 
 ## Output data
 
-The function returns a `pandas.DataFrame` containing annual streamflow signatures.
+The function returns a `pandas.DataFrame` containing annual hydrological indices.
 
 The output rows correspond to years, and the output columns correspond to calculated hydrological indicators.
 
@@ -166,7 +166,7 @@ Example:
 
 ```python
 import pandas as pd
-from streamflow_signatures import main_compute
+from hydrological_index import main_compute
 
 # Read daily streamflow data
 sf = pd.read_csv(
@@ -175,11 +175,11 @@ sf = pd.read_csv(
     parse_dates=True
 )
 
-# Calculate annual streamflow signatures
-signatures = main_compute(sf)
+# Calculate annual hydrological indices
+indices = main_compute(sf)
 
 # Save output
-signatures.to_csv("annual_streamflow_signatures.csv")
+indices.to_csv("annual_hydrological_indices.csv")
 ```
 
 ## Method overview
@@ -201,27 +201,27 @@ The annual baseflow index is then calculated as the ratio between annual mean ba
 Recommended repository structure:
 
 ```text
-streamflow-signatures/
+HydrologicalIndex/
 │
 ├── README.md
 ├── LICENSE
 ├── requirements.txt
-├── streamflow_signatures.py
+├── hydrological_index.py
 ├── examples/
 │   ├── example_input.csv
 │   └── example_usage.py
 └── outputs/
-    └── annual_streamflow_signatures_example.csv
+    └── annual_hydrological_indices_example.csv
 ```
 
 ## Reproducibility
 
-To reproduce the streamflow signature calculation:
+To reproduce the hydrological index calculation:
 
 1. Prepare daily streamflow data as a CSV file with dates as the first column.
 2. Install the required Python dependencies.
 3. Run the example script or call `main_compute()` directly.
-4. Export the returned annual signature table as CSV or another preferred format.
+4. Export the returned annual hydrological index table as CSV or another preferred format.
 
 Example command:
 
@@ -236,17 +236,17 @@ The input streamflow data used in the associated study should be deposited in an
 Placeholder statement:
 
 ```text
-The daily streamflow data and derived annual streamflow signature datasets associated with this study are available from [repository name] at [DOI/accession number]. The repository includes the original daily streamflow input files, processed annual streamflow signature tables, and metadata describing the variables and file structure.
+The daily streamflow data and derived annual hydrological index datasets associated with this study are available from [repository name] at [DOI/accession number]. The repository includes the original daily streamflow input files, processed annual hydrological index tables, and metadata describing the variables and file structure.
 ```
 
 ## Code availability
 
-The custom Python code used to calculate annual streamflow signatures is available in this repository. The code includes functions for calculating flow magnitude, frequency, duration, timing, variability, flashiness, and baseflow-related hydrological indicators from daily streamflow time series.
+The custom Python code used to calculate annual hydrological indices is available in this repository. The code includes functions for calculating flow magnitude, frequency, duration, timing, variability, flashiness, and baseflow-related hydrological indicators from daily streamflow time series.
 
 Placeholder statement:
 
 ```text
-The custom Python code used to calculate annual streamflow signatures is available at [GitHub repository URL] and archived at [Zenodo DOI]. The repository includes source code, dependency information, example input data, and example scripts for reproducing the annual hydrological indicators reported in this study.
+The custom Python code used to calculate annual hydrological indices is available at [GitHub repository URL] and archived at [Zenodo DOI]. The repository includes source code, dependency information, example input data, and example scripts for reproducing the annual hydrological indicators reported in this study.
 ```
 
 ## License
@@ -272,7 +272,7 @@ If you use this code, please cite the associated Scientific Data article and the
 Placeholder citation:
 
 ```text
-Author(s). Year. streamflow-signatures: A Python toolkit for calculating annual streamflow signatures from daily discharge data. Zenodo. DOI: [DOI]
+Cheng, Q. Year. HydrologicalIndex: A Python toolkit for calculating annual hydrological indices from daily streamflow data. Zenodo. DOI: [DOI]
 ```
 
 ## Contact
@@ -280,7 +280,7 @@ Author(s). Year. streamflow-signatures: A Python toolkit for calculating annual 
 For questions about the code or data processing workflow, please contact:
 
 ```text
-[Qingping Cheng]
-[Southwest Forestry University]
-[cqp@swfu.edu.cn]
+Qingping Cheng
+Southwest Forestry University
+cqp@swfu.edu.cn
 ```
