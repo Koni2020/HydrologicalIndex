@@ -1,30 +1,30 @@
 # HydrologicalIndex
 
-A Python toolkit for calculating annual hydrological indices from daily streamflow time series.
+A Python toolkit for calculating annual streamflow signatures from daily discharge time series.
 
-This repository provides the custom code used to derive annual hydrological indices from daily discharge data. The calculated indicators include flow magnitude, high-flow and low-flow frequency, event duration, timing, variability, rise/fall rates, and baseflow-related metrics.
+This repository provides the custom code used to derive annual hydrological indices from daily streamflow data. The calculated indicators include flow magnitude, high-flow and low-flow frequency, event duration, timing, variability, rise/fall rates, and baseflow-related metrics.
 
 ## Repository description
 
 **Repository name:** `HydrologicalIndex`
 
-**Description:**
-A Python toolkit for calculating annual hydrological indices from daily streamflow data, including flow magnitude, high/low-flow frequency and duration, timing, variability, rise/fall rates, and baseflow index.
+**Description:**  
+A Python toolkit for calculating annual streamflow signatures from daily discharge data, including flow magnitude, high/low-flow frequency and duration, timing, variability, rise/fall rates, and baseflow index.
 
 ## Purpose
 
-This code was developed to support reproducible hydrological data processing for a Scientific Data submission. It converts daily streamflow records into annual hydrological indices that can be used for hydrological characterization, trend analysis, inter-basin comparison, and technical validation of streamflow-related datasets.
+This code was developed to support reproducible hydrological data processing for a Scientific Data submission. It converts daily streamflow records into annual streamflow signature metrics that can be used for hydrological characterization, trend analysis, inter-basin comparison, and technical validation of streamflow-related datasets.
 
 ## Main functions
 
 The repository includes functions for:
 
-* Identifying consecutive non-missing streamflow segments.
-* Calculating the average duration of high-flow, low-flow, and zero-flow events.
-* Calculating the half-streamflow timing index.
-* Calculating the Richards-Baker flashiness index.
-* Separating baseflow using the Eckhardt digital filter.
-* Computing annual hydrological indices from daily discharge data.
+- Identifying consecutive non-missing streamflow segments.
+- Calculating the average duration of high-flow, low-flow, and zero-flow events.
+- Calculating the half-streamflow timing index.
+- Calculating the Richards-Baker flashiness index.
+- Separating baseflow using the Eckhardt digital filter.
+- Computing annual streamflow signature metrics from daily discharge data.
 
 ## Input data
 
@@ -32,24 +32,23 @@ The main function expects daily streamflow data as a `pandas.DataFrame`.
 
 Required format:
 
-* Rows: daily dates.
-* Index: `pandas.DatetimeIndex`.
-* Columns: station names, grid IDs, basin IDs, or other streamflow series identifiers.
-* Values: daily streamflow or discharge.
+- Rows: daily dates.
+- Index: `pandas.DatetimeIndex`.
+- Columns: station names, grid IDs, basin IDs, or other streamflow series identifiers.
+- Values: daily streamflow or discharge.
 
 Example input structure:
 
 ```text
-date        station_001  station_002  station_003
-1981-01-01      12.35       18.42       10.21
-1981-01-02      11.87       17.96       10.05
-1981-01-03      13.02       18.11       10.44
-...
+date,station_001,station_002,station_003
+1981-01-01,12.35,18.42,10.21
+1981-01-02,11.87,17.96,10.05
+1981-01-03,13.02,18.11,10.44
 ```
 
 ## Output data
 
-The function returns a `pandas.DataFrame` containing annual hydrological indices.
+The function returns a `pandas.DataFrame` containing annual streamflow signatures.
 
 The output rows correspond to years, and the output columns correspond to calculated hydrological indicators.
 
@@ -57,91 +56,91 @@ Main output indicators include:
 
 ### Flow magnitude
 
-* `Qmax1`: annual maximum 1-day mean streamflow
-* `Qmax3`: annual maximum 3-day mean streamflow
-* `Qmax7`: annual maximum 7-day mean streamflow
-* `Qmax30`: annual maximum 30-day mean streamflow
-* `Qmax90`: annual maximum 90-day mean streamflow
-* `Qmin1`: annual minimum 1-day mean streamflow
-* `Qmin3`: annual minimum 3-day mean streamflow
-* `Qmin7`: annual minimum 7-day mean streamflow
-* `Qmin30`: annual minimum 30-day mean streamflow
-* `Qmin90`: annual minimum 90-day mean streamflow
-* `Qmean`: annual mean streamflow
+- `Qmax1`: annual maximum 1-day mean streamflow
+- `Qmax3`: annual maximum 3-day mean streamflow
+- `Qmax7`: annual maximum 7-day mean streamflow
+- `Qmax30`: annual maximum 30-day mean streamflow
+- `Qmax90`: annual maximum 90-day mean streamflow
+- `Qmin1`: annual minimum 1-day mean streamflow
+- `Qmin3`: annual minimum 3-day mean streamflow
+- `Qmin7`: annual minimum 7-day mean streamflow
+- `Qmin30`: annual minimum 30-day mean streamflow
+- `Qmin90`: annual minimum 90-day mean streamflow
+- `Qmean`: annual mean streamflow
 
 ### Flow quantiles
 
-* `Q1st`: annual 1st percentile streamflow
-* `Q5th`: annual 5th percentile streamflow
-* `Q10th`: annual 10th percentile streamflow
-* `Q25th`: annual 25th percentile streamflow
-* `Q50th`: annual median streamflow
-* `Q75th`: annual 75th percentile streamflow
-* `Q90th`: annual 90th percentile streamflow
-* `Q95th`: annual 95th percentile streamflow
-* `Q99th`: annual 99th percentile streamflow
+- `Q1st`: annual 1st percentile streamflow
+- `Q5th`: annual 5th percentile streamflow
+- `Q10th`: annual 10th percentile streamflow
+- `Q25th`: annual 25th percentile streamflow
+- `Q50th`: annual median streamflow
+- `Q75th`: annual 75th percentile streamflow
+- `Q90th`: annual 90th percentile streamflow
+- `Q95th`: annual 95th percentile streamflow
+- `Q99th`: annual 99th percentile streamflow
 
 ### Monthly flow magnitude
 
-* `Qmean1` to `Qmean12`: mean streamflow for January to December in each year.
+- `Qmean1` to `Qmean12`: mean streamflow for January to December in each year.
 
 ### High-flow and low-flow frequency
 
-* `FreH`: frequency of high-flow days
-* `FreL`: frequency of low-flow days
-* `FreZ`: frequency of zero-flow days
-* `Fre1st`: frequency of extremely low-flow days below the 1st percentile
-* `Fre5th`: frequency of low-flow days below the 5th percentile
-* `Fre95th`: frequency of high-flow days above the 95th percentile
-* `Fre99th`: frequency of extremely high-flow days above the 99th percentile
+- `FreH`: frequency of high-flow days
+- `FreL`: frequency of low-flow days
+- `FreZ`: frequency of zero-flow days
+- `Fre1st`: frequency of extremely low-flow days below the 1st percentile
+- `Fre5th`: frequency of low-flow days below the 5th percentile
+- `Fre95th`: frequency of high-flow days above the 95th percentile
+- `Fre99th`: frequency of extremely high-flow days above the 99th percentile
 
 ### Number of flow events
 
-* `NumH`: number of high-flow days
-* `NumL`: number of low-flow days
-* `NumZ`: number of zero-flow days
-* `Num1st`: number of days below the 1st percentile
-* `Num5th`: number of days below the 5th percentile
-* `Num95th`: number of days above the 95th percentile
-* `Num99th`: number of days above the 99th percentile
+- `NumH`: number of high-flow days
+- `NumL`: number of low-flow days
+- `NumZ`: number of zero-flow days
+- `Num1st`: number of days below the 1st percentile
+- `Num5th`: number of days below the 5th percentile
+- `Num95th`: number of days above the 95th percentile
+- `Num99th`: number of days above the 99th percentile
 
 ### Flow duration
 
-* `DurH`: average duration of high-flow events
-* `DurL`: average duration of low-flow events
-* `DurZ`: average duration of zero-flow events
-* `Durl1st`: average duration of extremely low-flow events below the 1st percentile
-* `Dur5th`: average duration of low-flow events below the 5th percentile
-* `Dur95th`: average duration of high-flow events above the 95th percentile
-* `Dur99th`: average duration of extremely high-flow events above the 99th percentile
+- `DurH`: average duration of high-flow events
+- `DurL`: average duration of low-flow events
+- `DurZ`: average duration of zero-flow events
+- `Durl1st`: average duration of extremely low-flow events below the 1st percentile
+- `Dur5th`: average duration of low-flow events below the 5th percentile
+- `Dur95th`: average duration of high-flow events above the 95th percentile
+- `Dur99th`: average duration of extremely high-flow events above the 99th percentile
 
 ### Flow timing
 
-* `HFD`: half-streamflow date
-* `MMD`: date of annual maximum daily streamflow
-* `MC7DF`: date of annual minimum 7-day mean streamflow
+- `HFD`: half-streamflow date
+- `MMD`: date of annual maximum daily streamflow
+- `MC7DF`: date of annual minimum 7-day mean streamflow
 
 ### Flow variability and flashiness
 
-* `RM`: annual range between maximum and minimum streamflow
-* `BM`: annual range of baseflow
-* `VY`: annual variance of streamflow
-* `COVY`: annual coefficient of variation
-* `QCV`: quantile-based coefficient of variation
-* `RMM`: ratio between median flow and annual maximum 1-day flow
-* `RBFI`: Richards-Baker flashiness index
+- `RM`: annual range between maximum and minimum streamflow
+- `BM`: annual range of baseflow
+- `VY`: annual variance of streamflow
+- `COVY`: annual coefficient of variation
+- `QCV`: quantile-based coefficient of variation
+- `RMM`: ratio between median flow and annual maximum 1-day flow
+- `RBFI`: Richards-Baker flashiness index
 
 ### Rise and fall rates
 
-* `RRmean`: mean positive daily flow change
-* `RRmedian`: median positive daily flow change
-* `FRmean`: mean negative daily flow change
-* `FRmedian`: median negative daily flow change
+- `RRmean`: mean positive daily flow change
+- `RRmedian`: median positive daily flow change
+- `FRmean`: mean negative daily flow change
+- `FRmedian`: median negative daily flow change
 
 ### Baseflow-related metrics
 
-* `BFI`: baseflow index
-* `BM`: annual baseflow range
+- `BFI`: baseflow index
+- `BM`: annual baseflow range
 
 ## Requirements
 
@@ -157,7 +156,7 @@ baseflow
 Recommended installation:
 
 ```bash
-pip install numpy pandas numba baseflow
+pip install -r requirements.txt
 ```
 
 ## Usage
@@ -168,18 +167,20 @@ Example:
 import pandas as pd
 from hydrological_index import main_compute
 
-# Read daily streamflow data
 sf = pd.read_csv(
-    "daily_streamflow.csv",
+    "examples/example_input.csv",
     index_col=0,
     parse_dates=True
 )
 
-# Calculate annual hydrological indices
-indices = main_compute(sf)
+signatures = main_compute(sf)
+signatures.to_csv("outputs/annual_streamflow_signatures_example.csv")
+```
 
-# Save output
-indices.to_csv("annual_hydrological_indices.csv")
+or run:
+
+```bash
+python examples/example_usage.py
 ```
 
 ## Method overview
@@ -198,8 +199,6 @@ The annual baseflow index is then calculated as the ratio between annual mean ba
 
 ## File structure
 
-Recommended repository structure:
-
 ```text
 HydrologicalIndex/
 │
@@ -211,23 +210,17 @@ HydrologicalIndex/
 │   ├── example_input.csv
 │   └── example_usage.py
 └── outputs/
-    └── annual_hydrological_indices_example.csv
+    └── annual_streamflow_signatures_example.csv
 ```
 
 ## Reproducibility
 
-To reproduce the hydrological index calculation:
+To reproduce the streamflow signature calculation:
 
 1. Prepare daily streamflow data as a CSV file with dates as the first column.
 2. Install the required Python dependencies.
 3. Run the example script or call `main_compute()` directly.
-4. Export the returned annual hydrological index table as CSV or another preferred format.
-
-Example command:
-
-```bash
-python examples/example_usage.py
-```
+4. Export the returned annual signature table as CSV or another preferred format.
 
 ## Data availability
 
@@ -236,34 +229,22 @@ The input streamflow data used in the associated study should be deposited in an
 Placeholder statement:
 
 ```text
-The daily streamflow data and derived annual hydrological index datasets associated with this study are available from [repository name] at [DOI/accession number]. The repository includes the original daily streamflow input files, processed annual hydrological index tables, and metadata describing the variables and file structure.
+The daily streamflow data and derived annual streamflow signature datasets associated with this study are available from [repository name] at [DOI/accession number]. The repository includes the original daily streamflow input files, processed annual streamflow signature tables, and metadata describing the variables and file structure.
 ```
 
 ## Code availability
 
-The custom Python code used to calculate annual hydrological indices is available in this repository. The code includes functions for calculating flow magnitude, frequency, duration, timing, variability, flashiness, and baseflow-related hydrological indicators from daily streamflow time series.
+The custom Python code used to calculate annual streamflow signatures is available in this repository. The code includes functions for calculating flow magnitude, frequency, duration, timing, variability, flashiness, and baseflow-related hydrological indicators from daily streamflow time series.
 
 Placeholder statement:
 
 ```text
-The custom Python code used to calculate annual hydrological indices is available at [GitHub repository URL] and archived at [Zenodo DOI]. The repository includes source code, dependency information, example input data, and example scripts for reproducing the annual hydrological indicators reported in this study.
+The custom Python code used to calculate annual streamflow signatures is available at [GitHub repository URL] and archived at [Zenodo DOI]. The repository includes source code, dependency information, example input data, and example scripts for reproducing the annual hydrological indicators reported in this study.
 ```
 
 ## License
 
-Please specify the license before public release.
-
-Recommended open-source license:
-
-```text
-MIT License
-```
-
-or
-
-```text
-Apache License 2.0
-```
+This repository is released under the MIT License.
 
 ## Citation
 
@@ -272,7 +253,7 @@ If you use this code, please cite the associated Scientific Data article and the
 Placeholder citation:
 
 ```text
-Cheng, Q. Year. HydrologicalIndex: A Python toolkit for calculating annual hydrological indices from daily streamflow data. Zenodo. DOI: [DOI]
+Author(s). Year. HydrologicalIndex: A Python toolkit for calculating annual streamflow signatures from daily discharge data. Zenodo. DOI: [DOI]
 ```
 
 ## Contact
@@ -280,7 +261,7 @@ Cheng, Q. Year. HydrologicalIndex: A Python toolkit for calculating annual hydro
 For questions about the code or data processing workflow, please contact:
 
 ```text
-Qingping Cheng
-Southwest Forestry University
-cqp@swfu.edu.cn
+[Your name]
+[Your institution]
+[Your email]
 ```
